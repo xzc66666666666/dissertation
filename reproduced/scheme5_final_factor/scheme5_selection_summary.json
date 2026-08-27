@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "experiment_stage": "final pre-test factor freeze",
+  "selection_input_end_exclusive": "2025-06-20T00:00:00Z",
+  "test_metrics_loaded": false,
+  "frozen_core_count": 12,
+  "scheme5_eligible_count": 4,
+  "selected_factor_count": 1,
+  "selected_factor_id": "BTC_LONG_5b55989455e686eb_2d",
+  "base_gates": {
+    "tier": "核心",
+    "q": 99,
+    "minimum_positive_selection_folds": 6,
+    "maximum_top_five_selection_profit_share": 0.3
+  },
+  "rank_components": [
+    "cross_stage_signal_redundancy ascending",
+    "absolute development-to-selection CAGR gap ascending",
+    "absolute development-to-selection mean gross bp gap ascending",
+    "selection trade count descending"
+  ],
+  "rank_aggregation": "sum of four ordinal ranks; balanced_cagr descending then factor_id ascending as deterministic tie-breakers",
+  "source_catalog_sha256": "a312ed35f2a7cad17afa1ee71bdbc06ab3ff2c2e7c7bf08567b2ecad19d3df17",
+  "source_catalog_unchanged": true,
+  "ranking_sha256": "b490649c00069cd1f80f7fe523aa887f1326fb0047b89d0e4bc1da046c9f63a7",
+  "final_catalog_sha256": "9329803e4a271cbbd3c5d5e2649978887aa160acd27ca0ee4bc4b3d22a8ccdaa",
+  "script_sha256": "5e87a52694dcd32975a03d805536b9fc91afa789cecb629f2413f4f3f85b6bce"
+}

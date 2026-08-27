@@ -1,0 +1,2 @@
+﻿factor_id,candidate_index,horizon,tier_frozen_before_holdout,q_frozen_before_holdout,cost_bp,holdout_rank_ic,holdout_trades,holdout_trades_per_year,holdout_cagr,holdout_sharpe,holdout_max_drawdown,holdout_calmar,holdout_mean_gross_bp,positive_holdout_folds,both_holdout_folds_positive
+BTC_LONG_5b55989455e686eb_2d,441884,2d,核心,99,5.0,-0.01758687610971958,49,49.71458333333334,0.23332322929893112,1.069298420904941,-0.1141598352744092,2.043829414593018,52.040694071142056,2,True

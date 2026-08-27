@@ -1,0 +1,2 @@
+This catalogue was selected without loading rows at or after 2025-06-20 UTC.
+catalog_sha256=a312ed35f2a7cad17afa1ee71bdbc06ab3ff2c2e7c7bf08567b2ecad19d3df17

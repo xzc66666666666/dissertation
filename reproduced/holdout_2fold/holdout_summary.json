@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "meaning": "execution completed; PASS is not an alpha promotion verdict",
+  "cost_bp_round_trip": 5.0,
+  "holdout_start_inclusive": "2025-06-20 00:00:00+00:00",
+  "holdout_end_exclusive": "2026-06-15 00:00:00+00:00",
+  "holdout_fold_count": 2,
+  "holdout_fold_days": 180,
+  "holdout_initial_position": "flat",
+  "holdout_boundary_purge": "exit_time_horizon <= 2026-06-15T00:00:00Z",
+  "frozen_factor_count": 1,
+  "frozen_core_count": 1,
+  "holdout_factor_count": 1,
+  "holdout_did_not_select_rank_or_replace_factors": true,
+  "catalog_sha256_before": "9329803e4a271cbbd3c5d5e2649978887aa160acd27ca0ee4bc4b3d22a8ccdaa",
+  "catalog_sha256_after": "9329803e4a271cbbd3c5d5e2649978887aa160acd27ca0ee4bc4b3d22a8ccdaa",
+  "holdout_positive_aggregate_cagr_count": 1,
+  "holdout_both_folds_positive_count": 1,
+  "holdout_trade_rows": 49,
+  "script_sha256": "54c910144ee9018827733267cac94fb9e01bc5e50fe576c81f3733b128364e1c"
+}

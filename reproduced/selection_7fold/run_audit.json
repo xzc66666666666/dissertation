@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "cost_bp_round_trip": 5.0,
+  "threshold_rule": "monthly causal percentile from prior 180 calendar days",
+  "threshold_candidates_selected_in_development_validation": [
+    95,
+    97,
+    99
+  ],
+  "formula_orientation_and_q_use_holdout": false,
+  "selection_process_loaded_holdout_rows": false,
+  "selection_start_inclusive": "2022-01-07 00:00:00+00:00",
+  "selection_end_exclusive": "2025-06-20 00:00:00+00:00",
+  "selection_fold_count": 7,
+  "selection_fold_days": 180,
+  "selection_boundary_purge": "exit_time_horizon <= 2025-06-20T00:00:00Z",
+  "cross_boundary_labels_masked": {
+    "1d": 10,
+    "2d": 38,
+    "3d": 62,
+    "12h": 5
+  },
+  "factor_count": 1200,
+  "maximum_decision_time_loaded": "2025-06-19 17:50:05+00:00"
+}

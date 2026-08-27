@@ -1,0 +1,111 @@
+{
+  "status": "PASS",
+  "meaning": "pipeline reproduction completed; not a deployment verdict",
+  "created_at_utc": "2026-08-23T02:51:43.071511+00:00",
+  "experiment_id": "btc_cost5_scheme5_frozen_selection_20260822_v1",
+  "cost_bp_round_trip": 5.0,
+  "selection": {
+    "status": "PASS",
+    "experiment_id": "btc_cost5_scheme5_frozen_selection_20260822_v1",
+    "cost_bp_round_trip": 5.0,
+    "exact_factor_count": 1200,
+    "development_candidate_count": 849,
+    "stable_before_dedup": 179,
+    "core_before_dedup": 19,
+    "selected_after_dedup": 100,
+    "selected_core_count": 12,
+    "selected_by_horizon": {
+      "12h": 15,
+      "1d": 20,
+      "2d": 38,
+      "3d": 27
+    },
+    "selection_start_inclusive": "2022-01-07 00:00:00+00:00",
+    "selection_end_exclusive": "2025-06-20 00:00:00+00:00",
+    "selection_fold_count": 7,
+    "selection_boundary_purge": "all selected trades exit no later than holdout start",
+    "stable_min_positive_selection_folds": 5,
+    "core_min_positive_selection_folds": 6,
+    "holdout_rows_loaded_by_selection": false,
+    "holdout_metrics_used_for_selection_ranking_or_dedup": false,
+    "removed_legacy_full_2025_positive_gate": true,
+    "removed_legacy_2026_partial_positive_gate": true,
+    "selection_sort": [
+      "min(validation_cagr, selection_cagr)",
+      "selection_sharpe"
+    ],
+    "dedup_score_window": "development_validation_only",
+    "development_validation_score_abs_corr_median": 0.07662671507661248,
+    "development_validation_score_abs_corr_p90": 0.2831191693845766,
+    "selection_score_abs_corr_median": 0.06643380113821411,
+    "selection_profit_abs_corr_median": 0.06296995965007435,
+    "catalog_sha256": "a312ed35f2a7cad17afa1ee71bdbc06ab3ff2c2e7c7bf08567b2ecad19d3df17",
+    "selection_metrics_sha256": "6d6cc55af99958420f78a2547d35ba65fd17f9ee076fbecd07ff0fb6f23a321c",
+    "candidate_specs_sha256": "15009b700b847a55694915a99506ea26562aaa6681a468e11100e1599955d0c7",
+    "config_sha256": "5817b707fc6f5fa49eb5ca891860e94413a3f5666e892aba8239f935eb0f39f5",
+    "script_sha256": "3319bdcafa7c23f9f33b75e447d3442492392ab0f7a1cfaf9de22ebf00d42fdb"
+  },
+  "scheme5": {
+    "status": "PASS",
+    "experiment_stage": "final pre-test factor freeze",
+    "selection_input_end_exclusive": "2025-06-20T00:00:00Z",
+    "test_metrics_loaded": false,
+    "frozen_core_count": 12,
+    "scheme5_eligible_count": 4,
+    "selected_factor_count": 1,
+    "selected_factor_id": "BTC_LONG_5b55989455e686eb_2d",
+    "base_gates": {
+      "tier": "核心",
+      "q": 99,
+      "minimum_positive_selection_folds": 6,
+      "maximum_top_five_selection_profit_share": 0.3
+    },
+    "rank_components": [
+      "cross_stage_signal_redundancy ascending",
+      "absolute development-to-selection CAGR gap ascending",
+      "absolute development-to-selection mean gross bp gap ascending",
+      "selection trade count descending"
+    ],
+    "rank_aggregation": "sum of four ordinal ranks; balanced_cagr descending then factor_id ascending as deterministic tie-breakers",
+    "source_catalog_sha256": "a312ed35f2a7cad17afa1ee71bdbc06ab3ff2c2e7c7bf08567b2ecad19d3df17",
+    "source_catalog_unchanged": true,
+    "ranking_sha256": "b490649c00069cd1f80f7fe523aa887f1326fb0047b89d0e4bc1da046c9f63a7",
+    "final_catalog_sha256": "9329803e4a271cbbd3c5d5e2649978887aa160acd27ca0ee4bc4b3d22a8ccdaa",
+    "script_sha256": "5e87a52694dcd32975a03d805536b9fc91afa789cecb629f2413f4f3f85b6bce"
+  },
+  "holdout": {
+    "status": "PASS",
+    "meaning": "execution completed; PASS is not an alpha promotion verdict",
+    "cost_bp_round_trip": 5.0,
+    "holdout_start_inclusive": "2025-06-20 00:00:00+00:00",
+    "holdout_end_exclusive": "2026-06-15 00:00:00+00:00",
+    "holdout_fold_count": 2,
+    "holdout_fold_days": 180,
+    "holdout_initial_position": "flat",
+    "holdout_boundary_purge": "exit_time_horizon <= 2026-06-15T00:00:00Z",
+    "frozen_factor_count": 1,
+    "frozen_core_count": 1,
+    "holdout_factor_count": 1,
+    "holdout_did_not_select_rank_or_replace_factors": true,
+    "catalog_sha256_before": "9329803e4a271cbbd3c5d5e2649978887aa160acd27ca0ee4bc4b3d22a8ccdaa",
+    "catalog_sha256_after": "9329803e4a271cbbd3c5d5e2649978887aa160acd27ca0ee4bc4b3d22a8ccdaa",
+    "holdout_positive_aggregate_cagr_count": 1,
+    "holdout_both_folds_positive_count": 1,
+    "holdout_trade_rows": 49,
+    "script_sha256": "54c910144ee9018827733267cac94fb9e01bc5e50fe576c81f3733b128364e1c"
+  },
+  "selected_factor_id": "BTC_LONG_5b55989455e686eb_2d",
+  "artifacts": {
+    "frozen_core_catalog": "reproduced/frozen_library/frozen_factor_catalog.csv",
+    "scheme5_ranking": "reproduced/scheme5_final_factor/scheme5_candidate_ranking.csv",
+    "final_factor_catalog": "reproduced/scheme5_final_factor/final_factor_catalog.csv",
+    "holdout_metrics": "reproduced/holdout_2fold/holdout_2fold_performance.csv",
+    "holdout_ledger": "reproduced/holdout_2fold/holdout_trade_ledger.parquet"
+  },
+  "hashes": {
+    "final_factor_catalog": "9329803e4a271cbbd3c5d5e2649978887aa160acd27ca0ee4bc4b3d22a8ccdaa",
+    "scheme5_ranking": "b490649c00069cd1f80f7fe523aa887f1326fb0047b89d0e4bc1da046c9f63a7",
+    "holdout_metrics": "f5f7b69cd6423e98a54971af2b78c7871b37ac50f8ddf15a10d2c24a4d94ca9f",
+    "holdout_ledger": "bb6f9071050fc8332e42cf807c2dea0aeba055ade980c924bab777a1e77fb6d8"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "checks": {
+    "frozen_core_count_is_12": true,
+    "scheme5_eligible_count_is_4": true,
+    "scheme5_selects_exactly_one": true,
+    "selected_factor_is_frozen_core": true,
+    "selected_factor_is_rank_one": true,
+    "rank_sum_is_four": true,
+    "scheme5_loaded_no_test_metrics": true,
+    "final_catalog_has_no_test_columns": true,
+    "test_factor_set_matches_final_catalog": true,
+    "test_ledger_factor_set_matches_final_catalog": true,
+    "selection_trades_end_by_boundary": true,
+    "test_trades_start_at_boundary": true,
+    "test_trades_end_by_boundary": true,
+    "final_catalog_hash_unchanged_in_test": true,
+    "frozen_catalog_hash_matches_selection": true,
+    "cost_is_5bp": true,
+    "factor_ids_match_original_1200": true,
+    "development_q_matches_original": true,
+    "development_metrics_match_original": true,
+    "seven_fold_ledger_matches_original_prefix": true
+  },
+  "selected_factor_id": "BTC_LONG_5b55989455e686eb_2d",
+  "scheme5_eligible_count": 4,
+  "holdout_trade_rows": 49
+}

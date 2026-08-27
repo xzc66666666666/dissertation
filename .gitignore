@@ -1,0 +1,14 @@
+# Local Python and operating-system files
+__pycache__/
+*.py[cod]
+.DS_Store
+.venv/
+venv/
+env/
+.env
+
+# Local experiment outputs generated during a fresh replay.
+# The frozen `reproduced/` archive in this repository is intentionally tracked.
+*.log
+*.tmp
+

@@ -1,0 +1,3 @@
+Scheme 5 final factor selection reads only artifacts frozen before 2025-06-20 UTC.
+selected_factor_id=BTC_LONG_5b55989455e686eb_2d
+final_catalog_sha256=9329803e4a271cbbd3c5d5e2649978887aa160acd27ca0ee4bc4b3d22a8ccdaa
