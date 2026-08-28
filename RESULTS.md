@@ -37,7 +37,7 @@ The final factor is `BTC_LONG_5b55989455e686eb_2d` for Binance BTCUSDT USDT-M pe
 | Second 180-day block net-return sum | 20.54% |
 | Positive-return blocks | 2 / 2 |
 
-Approximately 97.3% of the two-block net-return sum is concentrated in the second block. Assessment rank IC is `-0.0176`; bootstrap intervals cross zero and the reported placebo p-values exceed 0.05. These results do not support claims of positive conditional information or positive expected returns, and the concentration result does not support temporal dispersion. The attractive aggregate performance should therefore be treated as descriptive historical evidence.
+Approximately 97.3% of the two-block net-return sum is concentrated in the second block. Assessment rank IC is `-0.0176`; bootstrap intervals cross zero and the reported placebo p-values exceed 0.05. The present assessment does not furnish affirmative evidence for conditional directional information. The positive realised outcome is compatible with H2, but the available evidence is insufficient to establish positive expected net performance. The evidence does not permit the temporal component of H3 to be affirmed, given the concentration of gains in the later block. The attractive aggregate performance should therefore be treated as descriptive historical evidence.
 
 The archive does not establish that the factor and its evaluation settings were fixed before the 2025-2026 outcomes were observed. Accordingly, this period is called a historical assessment, not a genuine holdout or out-of-sample test. Legacy directory and column names containing `holdout` are preserved only for artifact compatibility.
 
