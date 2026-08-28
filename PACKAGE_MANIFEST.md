@@ -1,30 +1,30 @@
-# 包清单
+# Package Manifest
 
-## 包身份
+## Package identity
 
-- 包目录：`btc_factor_scheme5_factor_mining_package_20260823`
-- 实验标识：`btc_cost5_scheme5_frozen_selection_20260822_v1`
-- 成本口径：每笔完整往返交易扣除5bp
-- 最终因子：`BTC_LONG_5b55989455e686eb_2d`
+- Package directory: `btc_factor_scheme5_factor_mining_package_20260823`
+- Experiment identifier: `btc_cost5_scheme5_frozen_selection_20260822_v1`
+- Cost convention: 5bp deducted for each completed round-trip trade
+- Final factor: `BTC_LONG_5b55989455e686eb_2d`
 
-## 代码入口
+## Code entry points
 
-1. `code/build_selection_7fold.py`：用固定的1,200条定义生成7个选择段。
-2. `code/finalize_selection_7fold.py`：应用稳定/核心门槛、去重并写出100条冻结目录。
-3. `code/select_scheme5_final_factor.py`：应用方案5门槛并对合格候选排名。
-4. `code/evaluate_holdout_2fold.py`：在两个阶段化评估段运行冻结因子。
-5. `code/build_scheme5_summary.py`、`code/validate_scheme5_outputs.py`：生成摘要并验证归档产物。
-6. `STRATEGY_SPEC.md`：最终因子、筛选门槛、执行口径和复算结果的单页规格说明。
+1. `code/build_selection_7fold.py`: generates seven selection blocks using the fixed 1,200 definitions.
+2. `code/finalize_selection_7fold.py`: applies the stable/core thresholds, de-duplicates candidates, and writes the 100-factor frozen catalogue.
+3. `code/select_scheme5_final_factor.py`: applies the Scheme 5 thresholds and ranks eligible candidates.
+4. `code/evaluate_holdout_2fold.py`: runs the frozen factor across two staged assessment blocks.
+5. `code/build_scheme5_summary.py` and `code/validate_scheme5_outputs.py`: generate the summary and validate archived artifacts.
+6. `STRATEGY_SPEC.md`: a one-page specification of the final factor, selection thresholds, execution convention, and reproduced results.
 
-## 从头复算所需输入
+## Inputs required for a full rerun
 
-- 长周期事件特征快照；
-- 原5bp运行保留的1,200条因子定义和候选规格；
-- 原因果滚动审计产物，用于历史前缀一致性核对；
-- 包含 NumPy、pandas、PyArrow 的Python环境。
+- A long-horizon event-feature snapshot;
+- The 1,200 factor definitions and candidate specifications retained by the original 5bp run;
+- Original causal rolling-audit artifacts for historical-prefix consistency checks;
+- A Python environment containing NumPy, pandas, and PyArrow.
 
-默认路径见 `run_full_scheme5.sh`，可通过同名环境变量覆盖。
+See `run_full_scheme5.sh` for the default paths. They can be overridden through environment variables with the same names.
 
-## 归档检查
+## Archive checks
 
-`evidence/validation.json` 保存20项检查结果，覆盖冻结目录、方案5排名、目录成员、时间边界、成本口径和历史账本一致性。
+`evidence/validation.json` records the results of 20 checks covering the frozen catalogue, Scheme 5 ranking, catalogue membership, time boundaries, cost convention, and historical-ledger consistency.
