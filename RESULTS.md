@@ -1,44 +1,44 @@
-# BTCUSDT 5bp 方案5复算结果
+# BTCUSDT 5bp Scheme 5 Reproduction Results
 
-## 因子筛选漏斗
+## Factor selection funnel
 
-| 阶段 | 因子数量 |
+| Stage | Factor count |
 |---|---:|
-| 精确候选定义 | 1,200 |
-| 开发候选 | 849 |
-| 通过七段稳定门槛 | 179 |
-| 通过七段核心门槛 | 19 |
-| 去重后冻结目录 | 100 |
-| 其中核心因子 | 12 |
-| 方案5基础条件合格 | 4 |
-| 方案5最终冻结 | 1 |
+| Exact candidate definitions | 1,200 |
+| Development candidates | 849 |
+| Passed seven-block stability threshold | 179 |
+| Passed seven-block core threshold | 19 |
+| Frozen catalogue after de-duplication | 100 |
+| Core factors among them | 12 |
+| Passed Scheme 5 baseline criteria | 4 |
+| Scheme 5 final frozen factor | 1 |
 
-最终因子为 `BTC_LONG_5b55989455e686eb_2d`。
+The final factor is `BTC_LONG_5b55989455e686eb_2d`.
 
-## 方案5候选排名
+## Scheme 5 candidate ranking
 
-| 因子 | 信号冗余度 | CAGR差 | 单笔毛收益差 | 七段交易数 | 名次和 | 最终排名 |
+| Factor | Signal redundancy | CAGR gap | Mean gross trade return gap | Seven-block trade count | Rank sum | Final rank |
 |---|---:|---:|---:|---:|---:|---:|
 | `BTC_LONG_5b55989455e686eb_2d` | 0.0723 | 18.74pp | 96.79bp | 178 | 4 | 1 |
 | `BTC_LONG_546aae11ff7d6499_2d` | 0.1149 | 19.32pp | 112.10bp | 92 | 11 | 2 |
 | `BTC_LONG_8a7646dc5ccbd0f9_1d` | 0.1287 | 20.50pp | 124.94bp | 152 | 12 | 3 |
 | `BTC_LONG_6e133e86c2c01d4b_3d` | 0.0937 | 60.98pp | 214.81bp | 131 | 13 | 4 |
 
-## 冻结后的两段评估
+## Two-block assessment after freezing
 
-| 指标 | 结果 |
+| Metric | Result |
 |---|---:|
-| 交易数 | 49 |
+| Trade count | 49 |
 | CAGR | 23.33% |
 | Sharpe | 1.069 |
-| 最大回撤 | -11.42% |
+| Maximum drawdown | -11.42% |
 | Calmar | 2.044 |
-| 第 1 段净收益和 | 2.51% |
-| 第 2 段净收益和 | 20.54% |
-| 正收益段数 | 2 / 2 |
+| Block 1 net return sum | 2.51% |
+| Block 2 net return sum | 20.54% |
+| Positive-return blocks | 2 / 2 |
 
-每笔完成交易扣除 5bp。绩效账本按完成交易的退出日入账；因此 Sharpe 和最大回撤是退出日口径，非持仓内逐日盯市口径。
+Each completed trade is charged 5bp. The performance ledger is booked on the exit date of each completed trade; therefore, Sharpe and maximum drawdown use exit-date accounting rather than daily mark-to-market accounting while positions are open.
 
-## 验证状态
+## Validation status
 
-`evidence/validation.json` 的全部检查为 PASS：因子定义、开发期分位数、开发期指标和七段交易账本与原 5bp 历史前缀一致；最终目录固定为方案 5 第 1 名，成本为 5bp。
+All checks in `evidence/validation.json` are PASS: the factor definitions, development-period quantiles, development-period metrics, and seven-block trade ledger are consistent with the original 5bp historical prefix. The final catalogue is fixed as the Scheme 5 rank-1 factor, with a 5bp cost convention.
