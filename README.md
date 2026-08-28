@@ -2,7 +2,7 @@
 
 This repository is the code-and-evidence companion to the dissertation's FRPE-2D case study. The research instrument is the Binance BTCUSDT USDT-margined perpetual futures contract. Historical artifact paths containing `spot` are immutable legacy names and do not identify the market used in the calculations.
 
-For the repository boundary and external inputs, see [`REPOSITORY_GUIDE.md`](REPOSITORY_GUIDE.md). [`README_EN.md`](README_EN.md) is the synchronized English mirror of this file.
+For the repository boundary and external inputs, see [`REPOSITORY_GUIDE.md`](REPOSITORY_GUIDE.md).
 
 ## Final factor
 
