@@ -1,26 +1,26 @@
-# 方案5复现
+# Scheme 5 Reproduction
 
-## 最终结果
+## Final result
 
-- 因子：`BTC_LONG_5b55989455e686eb_2d`
-- 公式：`(x_flow_price_gap*x_close_location) | (x_flow_mean_12*m1_return_efficiency_5) | (x_flow_mean_72*x_return_efficiency_288)`
-- 研究成本：每笔完整往返交易5bp
+- Factor: `BTC_LONG_5b55989455e686eb_2d`
+- Formula: `(x_flow_price_gap*x_close_location) | (x_flow_mean_12*m1_return_efficiency_5) | (x_flow_mean_72*x_return_efficiency_288)`
+- Research cost: 5bp per completed round-trip trade
 
-## 使用顺序
+## Recommended sequence
 
-1. 阅读 `README.md`，了解固定流程和外部输入。
-2. 查看 `config.json`，确认日期、门槛与排名规则。
-3. 查看 `RESULTS.md` 和 `reproduced/scheme5_final_factor/scheme5_candidate_ranking.csv`。
-4. 查看 `evidence/validation.json`，归档版本的20项检查均为PASS。
-5. 在本目录的新副本中执行 `./run_full_scheme5.sh`，复算全部阶段。
+1. Read `README.md` to understand the fixed workflow and external inputs.
+2. Review `config.json` to confirm the dates, thresholds, and ranking rules.
+3. Review `RESULTS.md` and `reproduced/scheme5_final_factor/scheme5_candidate_ranking.csv`.
+4. Review `evidence/validation.json`; all 20 checks for the archived version are PASS.
+5. Run `./run_full_scheme5.sh` in a new copy of this directory to reproduce all stages.
 
-## 主要证据
+## Key evidence
 
-| 用途 | 路径 |
+| Purpose | Path |
 |---|---|
-| 七段筛选冻结目录 | `reproduced/frozen_library/frozen_factor_catalog.csv` |
-| 方案5四候选排名 | `reproduced/scheme5_final_factor/scheme5_candidate_ranking.csv` |
-| 最终单因子目录 | `reproduced/scheme5_final_factor/final_factor_catalog.csv` |
-| 两段评估指标 | `reproduced/holdout_2fold/holdout_2fold_performance.csv` |
-| 逐笔交易账本 | `reproduced/holdout_2fold/holdout_trade_ledger.parquet` |
-| 验证检查 | `evidence/validation.json` |
+| Seven-block frozen selection catalogue | `reproduced/frozen_library/frozen_factor_catalog.csv` |
+| Scheme 5 ranking of four candidates | `reproduced/scheme5_final_factor/scheme5_candidate_ranking.csv` |
+| Final one-factor catalogue | `reproduced/scheme5_final_factor/final_factor_catalog.csv` |
+| Two-block assessment metrics | `reproduced/holdout_2fold/holdout_2fold_performance.csv` |
+| Completed-trade ledger | `reproduced/holdout_2fold/holdout_trade_ledger.parquet` |
+| Validation checks | `evidence/validation.json` |
