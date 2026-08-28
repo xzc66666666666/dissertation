@@ -1,8 +1,8 @@
-# 包清单
+# 清单
 
-## 包身份
+## 身份
 
-- 包目录：`btc_factor_scheme5_factor_mining_package_20260823`
+- 目录：`btc_factor_scheme5_factor_mining_package_20260823`
 - 实验标识：`btc_cost5_scheme5_frozen_selection_20260822_v1`
 - 成本口径：每笔完整往返交易扣除5bp
 - 最终因子：`BTC_LONG_5b55989455e686eb_2d`
