@@ -5,6 +5,9 @@ FRPE-2D post-selection assessment. It contains the six Python entry points, the
 frozen configuration, validation evidence, and the reproduced selection and
 holdout ledgers used by the thesis.
 
+Public repository: https://github.com/xzc66666666666/dissertation.git (main,
+commit `d53a32f7ad199a3846ab50e7f4dbf0021e05a9b6`).
+
 ## What is included
 
 - `code/`: selection, ranking, holdout evaluation, summary, and validation scripts.
@@ -42,4 +45,3 @@ The experiment is a research candidate. The fixed 5 bp cost is not a substitute
 for real fills, bid-ask spread, market impact, financing, latency, capacity, or
 paper-trading evidence. Do not use this repository as an automated live-trading
 system without a separate execution adapter and risk controls.
-

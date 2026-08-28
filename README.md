@@ -7,6 +7,8 @@
 - 因子：`BTC_LONG_5b55989455e686eb_2d`
 - 公式：`(x_flow_price_gap*x_close_location) | (x_flow_mean_12*m1_return_efficiency_5) | (x_flow_mean_72*x_return_efficiency_288)`
 - `2d`：单笔最长持仓约48小时，同一因子不重叠持仓。
+- 阈值：每月使用前180个日历日的绝对分数；历史观测少于500条时不生成阈值。
+- 时序：决策只使用当时可用的特征，入场至少晚于决策时间60秒；存档的入场价是研究标签端点，不等同于已验证的实际成交价。
 
 ## 固定流程
 

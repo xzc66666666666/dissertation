@@ -14,6 +14,8 @@ This is an isolated packaging of the Scheme 5 factor-mining workflow, archived a
 - Cost: 5bp deducted once for each completed round-trip trade.
 - Final factor: `BTC_LONG_5b55989455e686eb_2d`.
 - `2d` denotes a maximum holding horizon of about 48 hours; positions for the same factor do not overlap.
+- Threshold history: each monthly absolute-score threshold uses the preceding 180 calendar days and is unavailable until at least 500 prior event observations exist.
+- Timing: the decision uses only features available by the event timestamp; entry uses the archived event-table price at least 60 seconds after the decision timestamp.
 
 ## Frozen workflow
 
@@ -37,7 +39,7 @@ Ties are resolved by `balanced_cagr` descending, then factor ID ascending.
 
 ## Execution sequence
 
-The workflow uses UTC decision timestamps, feature-availability timestamps, and fixed-horizon labels. The final catalogue is recorded before the assessment run; the assessment starts flat and records the catalogue hash at completion. Validation evidence is stored in `evidence/validation.json`.
+The workflow uses UTC decision timestamps, feature-availability timestamps, and fixed-horizon labels. The final catalogue is recorded before the assessment run; the assessment starts flat and records the catalogue hash at completion. The stored event-table entry price is a research label endpoint, not evidence of a contemporaneous executable fill. Validation evidence is stored in `evidence/validation.json`.
 
 ## Reproduction
 

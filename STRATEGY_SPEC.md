@@ -7,6 +7,7 @@
 - Cost: 5 bp per completed round trip
 - Position rule: non-overlapping positions for the same factor
 - Threshold: rolling absolute-score quantile `q=99`
+- Threshold history: preceding 180 calendar days, with no threshold until at least 500 prior event observations are available
 - Final score orientation: `-1`
 
 ## Formula
@@ -30,7 +31,7 @@ The stored component weights are `0.5`, `-1`, and `-0.5`. The vertical bar is th
 
 ## Execution accounting
 
-At each event, compare the oriented score with the rolling threshold. Open a long or short position only when the corresponding threshold is crossed and no position is open. Enter at the next executable event price, exit at the two-day horizon, and deduct 5 bp once from the completed trade. Book realised P&L on the exit timestamp.
+At each event, compare the oriented score with the rolling threshold. Open a long or short position only when the corresponding threshold is crossed and no position is open. Enter at the archived event-table entry price at least 60 seconds after the decision timestamp, exit at the two-day horizon, and deduct 5 bp once from the completed trade. The archived entry price is a research label endpoint, not a validated contemporaneous executable fill. Book realised P&L on the exit timestamp.
 
 ## Reproduced result
 

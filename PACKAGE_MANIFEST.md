@@ -6,6 +6,7 @@
 - Experiment identifier: `btc_cost5_scheme5_frozen_selection_20260822_v1`
 - Cost convention: 5bp deducted for each completed round-trip trade
 - Final factor: `BTC_LONG_5b55989455e686eb_2d`
+- Timing convention: monthly q=99 thresholds use the preceding 180 calendar days and require at least 500 prior event observations; entry is at least 60 seconds after the decision timestamp.
 
 ## Code entry points
 
