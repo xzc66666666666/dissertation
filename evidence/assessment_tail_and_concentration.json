@@ -1,0 +1,211 @@
+{
+  "scope": {
+    "concentration": "49 completed non-overlapping, 5 bp costed trades; exit-date realised-P&L accounting",
+    "tail_direction": "87 raw q=99 threshold-passing assessment events; gross 2d directional return, before non-overlap selection and 5 bp costs",
+    "status": "Post-selection audit material. It quantifies archived historical results and is not prospective validation or preregistration evidence."
+  },
+  "baseline_completed_ledger": {
+    "trades": 49,
+    "compound_total_return": 0.22961116422623595,
+    "gross_positive_return_sum": 0.6862237586509127,
+    "largest_winner": {
+      "event_id": 41813,
+      "net_return": 0.0646173992050651,
+      "share_of_gross_positive_returns": 0.09416374526597594
+    },
+    "top_five_winners": {
+      "net_return_sum": 0.2460875820613651,
+      "share_of_gross_positive_returns": 0.35861128233910616
+    }
+  },
+  "removal_sensitivity": {
+    "remove_largest_winner": {
+      "removed_event_ids": [
+        41813
+      ],
+      "trades_remaining": 48,
+      "compound_total_return": 0.1549793993075541,
+      "cagr": 0.1574087971962037,
+      "max_drawdown": -0.1141598352744092
+    },
+    "remove_top_five_winners": {
+      "removed_event_ids": [
+        41813,
+        48976,
+        43320,
+        47580,
+        44236
+      ],
+      "trades_remaining": 44,
+      "compound_total_return": -0.03272860789962129,
+      "cagr": -0.03319788903664256,
+      "max_drawdown": -0.14618645878215064
+    }
+  },
+  "monthly_exit_date_concentration": [
+    {
+      "month": "2025-06",
+      "trades": 2,
+      "net_return_sum": 0.0604707882764296,
+      "positive_return_sum": 0.0646173992050651,
+      "negative_return_sum": -0.004146610928635497
+    },
+    {
+      "month": "2025-07",
+      "trades": 6,
+      "net_return_sum": 0.010228146613840194,
+      "positive_return_sum": 0.0771492831989275,
+      "negative_return_sum": -0.0669211365850873
+    },
+    {
+      "month": "2025-08",
+      "trades": 6,
+      "net_return_sum": -0.029398397354889916,
+      "positive_return_sum": 0.044167161069522676,
+      "negative_return_sum": -0.07356555842441259
+    },
+    {
+      "month": "2025-09",
+      "trades": 6,
+      "net_return_sum": 0.07308580250969288,
+      "positive_return_sum": 0.09409713281283943,
+      "negative_return_sum": -0.021011330303146558
+    },
+    {
+      "month": "2025-10",
+      "trades": 4,
+      "net_return_sum": 0.007390098211808915,
+      "positive_return_sum": 0.09453747806243912,
+      "negative_return_sum": -0.0871473798506302
+    },
+    {
+      "month": "2025-11",
+      "trades": 2,
+      "net_return_sum": -0.04370746110892776,
+      "positive_return_sum": 0.035747291004277704,
+      "negative_return_sum": -0.07945475211320546
+    },
+    {
+      "month": "2025-12",
+      "trades": 4,
+      "net_return_sum": -0.03735799708706089,
+      "positive_return_sum": 0.019232503500989928,
+      "negative_return_sum": -0.05659050058805082
+    },
+    {
+      "month": "2026-01",
+      "trades": 2,
+      "net_return_sum": 0.023034014930481073,
+      "positive_return_sum": 0.02383732765693164,
+      "negative_return_sum": -0.0008033127264505664
+    },
+    {
+      "month": "2026-02",
+      "trades": 2,
+      "net_return_sum": 0.02482077102094593,
+      "positive_return_sum": 0.02482077102094593,
+      "negative_return_sum": 0.0
+    },
+    {
+      "month": "2026-03",
+      "trades": 4,
+      "net_return_sum": 0.054179703981244165,
+      "positive_return_sum": 0.06287359480042026,
+      "negative_return_sum": -0.008693890819176098
+    },
+    {
+      "month": "2026-04",
+      "trades": 4,
+      "net_return_sum": -0.011001698203024879,
+      "positive_return_sum": 0.008547743672187635,
+      "negative_return_sum": -0.019549441875212514
+    },
+    {
+      "month": "2026-05",
+      "trades": 6,
+      "net_return_sum": 0.04008938841917553,
+      "positive_return_sum": 0.07792983190748426,
+      "negative_return_sum": -0.03784044348830873
+    },
+    {
+      "month": "2026-06",
+      "trades": 1,
+      "net_return_sum": 0.058666240738881215,
+      "positive_return_sum": 0.058666240738881215,
+      "negative_return_sum": 0.0
+    }
+  ],
+  "thresholded_directional_information": {
+    "events": 87,
+    "directional_hit_rate": 0.5402298850574713,
+    "wilson_95_ci": [
+      0.43602826866762756,
+      0.641029058359857
+    ],
+    "mean_directional_gross_return": 0.001135300204839397,
+    "by_direction": [
+      {
+        "direction": "long",
+        "events": 41,
+        "mean_directional_gross_return": 0.0034357304911234506,
+        "hit_rate": 0.6585365853658537,
+        "wilson_95_ci": [
+          0.5054983651982969,
+          0.7844119174261515
+        ]
+      },
+      {
+        "direction": "short",
+        "events": 46,
+        "mean_directional_gross_return": -0.0009150833111963901,
+        "hit_rate": 0.43478260869565216,
+        "wilson_95_ci": [
+          0.3020926277801995,
+          0.5775256630570501
+        ]
+      }
+    ],
+    "by_abs_score_quartile": [
+      {
+        "abs_score_bin": "(1.445, 1.867]",
+        "events": 22,
+        "mean_directional_gross_return": 0.006509704939680263,
+        "hit_rate": 0.5909090909090909,
+        "wilson_95_ci": [
+          0.3873481847631513,
+          0.7674418380352814
+        ]
+      },
+      {
+        "abs_score_bin": "(1.867, 2.065]",
+        "events": 22,
+        "mean_directional_gross_return": -0.0051802371228601325,
+        "hit_rate": 0.45454545454545453,
+        "wilson_95_ci": [
+          0.2692029418081331,
+          0.6534020467926505
+        ]
+      },
+      {
+        "abs_score_bin": "(2.065, 2.305]",
+        "events": 21,
+        "mean_directional_gross_return": 0.0006383645204633229,
+        "hit_rate": 0.5714285714285714,
+        "wilson_95_ci": [
+          0.3654655436930671,
+          0.7553003107462404
+        ]
+      },
+      {
+        "abs_score_bin": "(2.305, 4.916]",
+        "events": 22,
+        "mean_directional_gross_return": 0.0025507804964206775,
+        "hit_rate": 0.5454545454545454,
+        "wilson_95_ci": [
+          0.3465979532073494,
+          0.7307970581918668
+        ]
+      }
+    ]
+  }
+}

@@ -16,14 +16,18 @@ For the repository boundary and external inputs, see [`REPOSITORY_GUIDE.md`](REP
 
 The parameter choices are archived reconstruction settings. The archive does not establish that the factor, `q=99`, 180-day window, or 60-second delay were externally registered before the 2025-2026 outcomes were observed. The final period is therefore a historical assessment, not a genuine holdout or out-of-sample test.
 
-## Frozen workflow
+## Archived reconstruction workflow
 
 1. Start from the 1,200 exact long-horizon definitions retained by the original 5 bp run.
 2. Evaluate seven consecutive 180-day selection blocks from 2022-01-07 inclusive to 2025-06-20 exclusive.
-3. Apply stability, core-tier, lineage-overlap, and score-correlation filters to freeze a 100-factor catalogue, including 12 core factors.
+3. Apply stability, core-tier, lineage-overlap, and score-correlation filters to archive a 100-factor catalogue, including 12 core factors.
 4. Require core tier, `q=99`, at least six positive selection blocks, and no more than 30% of positive profit from the five largest winners.
-5. Rank eligible factors on four equal-weight ordinal criteria and freeze rank 1.
-6. Assess the frozen factor from 2025-06-20 inclusive to 2026-06-15 exclusive in two report-only 180-day blocks.
+5. Rank eligible factors on four equal-weight ordinal criteria and archive rank 1 for the reconstruction.
+6. Assess the archived reconstruction factor from 2025-06-20 inclusive to 2026-06-15 exclusive in two report-only 180-day blocks.
+
+## Post-selection diagnostics
+
+`code/audit_assessment_concentration_and_tail.py` records two deliberately separate audits.  It quantifies realised-profit concentration from the 49 completed non-overlapping, 5 bp costed trades, then tests the q=99 rule's directional information on all 87 raw threshold-passing assessment events before overlap selection and costs.  Its JSON output is `evidence/assessment_tail_and_concentration.json`.  These are post-selection historical diagnostics, not prospective confirmation or preregistration evidence.
 
 ## Audit findings
 
@@ -50,7 +54,7 @@ The runner relies on the external full-chain bundle for the large event-feature 
 | `START_HERE.md` | Recommended review sequence |
 | `STRATEGY_SPEC.md` | Factor, feature, event, timing, and accounting contract |
 | `code/` | Selection, assessment, validation, and audit scripts |
-| `reproduced/` | Frozen catalogues, rankings, metrics, and trade ledgers |
+| `reproduced/` | Archived catalogues, rankings, metrics, and trade ledgers |
 | `evidence/` | Experiment summary, validation, feature contract, and new audits |
 | `RESULTS.md` | Results and evidential interpretation |
 | `PACKAGE_MANIFEST.md` | Package contents and external-input boundary |

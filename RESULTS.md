@@ -8,10 +8,10 @@
 | Development candidates | 849 |
 | Passed seven-block stability threshold | 179 |
 | Passed seven-block core threshold | 19 |
-| Frozen catalogue after de-duplication | 100 |
-| Core factors in frozen catalogue | 12 |
+| Archived catalogue after de-duplication | 100 |
+| Core factors in archived catalogue | 12 |
 | Passed Scheme 5 baseline criteria | 4 |
-| Final frozen factor | 1 |
+| Final archived reconstruction factor | 1 |
 
 The final factor is `BTC_LONG_5b55989455e686eb_2d` for Binance BTCUSDT USDT-M perpetual futures.
 
@@ -24,7 +24,7 @@ The final factor is `BTC_LONG_5b55989455e686eb_2d` for Binance BTCUSDT USDT-M pe
 | `BTC_LONG_8a7646dc5ccbd0f9_1d` | 0.1287 | 20.50 pp | 124.94 bp | 152 | 12 | 3 |
 | `BTC_LONG_6e133e86c2c01d4b_3d` | 0.0937 | 60.98 pp | 214.81 bp | 131 | 13 | 4 |
 
-## Historical assessment after freezing
+## Historical assessment of the archived reconstruction
 
 | Metric | Result |
 |---|---:|
@@ -37,7 +37,7 @@ The final factor is `BTC_LONG_5b55989455e686eb_2d` for Binance BTCUSDT USDT-M pe
 | Second 180-day block net-return sum | 20.54% |
 | Positive-return blocks | 2 / 2 |
 
-Approximately 97.3% of the two-block net-return sum is concentrated in the second block. Assessment rank IC is `-0.0176`; bootstrap intervals cross zero and the reported placebo p-values exceed 0.05. The present assessment does not furnish affirmative evidence for conditional directional information. The positive realised outcome is compatible with H2, but the available evidence is insufficient to establish positive expected net performance. The evidence does not permit the temporal component of H3 to be affirmed, given the concentration of gains in the later block. The attractive aggregate performance should therefore be treated as descriptive historical evidence.
+Approximately 97.3% of the two-block net-return sum is concentrated in the second block. Assessment rank IC is `-0.0176`; bootstrap intervals cross zero and the reported placebo p-values exceed 0.05. The present assessment does not furnish affirmative evidence for conditional directional information. The positive realised outcome is compatible with H2, but the available evidence is insufficient to establish positive expected net performance. The evidence does not permit temporal or trade-level concentration robustness to be affirmed. The attractive aggregate performance should therefore be treated as descriptive historical evidence.
 
 The archive does not establish that the factor and its evaluation settings were fixed before the 2025-2026 outcomes were observed. Accordingly, this period is called a historical assessment, not a genuine holdout or out-of-sample test. Legacy directory and column names containing `holdout` are preserved only for artifact compatibility.
 
@@ -57,7 +57,15 @@ The discovery snapshot (`45e9d44e...`) and final-selection/MTM snapshot (`8d93f3
 | Net-return maximum difference | 0 |
 | All performance-metric differences | 0 |
 
-The complete machine-readable comparison is in `evidence/frpe_snapshot_equivalence.json`. The different file hashes do not alter the frozen reconstruction's economic output.
+The complete machine-readable comparison is in `evidence/frpe_snapshot_equivalence.json`. The different file hashes do not alter the archived-reconstruction economic output.
+
+## Assessment tail and concentration audit
+
+`evidence/assessment_tail_and_concentration.json` quantifies the previously unreported trade-level concentration on the 49 completed non-overlapping, 5 bp costed trades. The baseline compounded return is `22.9611%`. The largest winner is `6.4617%`, or `9.4164%` of gross positive trade returns; the top five total `24.6088%`, or `35.8611%`. Removing the largest winner leaves a `15.4979%` compounded return, `15.7409%` CAGR, and `-11.4160%` MDD. Removing the five largest winners leaves `-3.2729%`, `-3.3198%` CAGR, and `-14.6186%` MDD. Thus, the top-five deletion reverses the compounded outcome, so the archived assessment does not affirm trade-level concentration robustness.
+
+Monthly exit-date realised P&L is also uneven: the largest positive months are 2025-09 (`+7.3086%`, six trades), 2025-06 (`+6.0471%`, two trades), 2026-06 (`+5.8666%`, one trade), and 2026-03 (`+5.4180%`, four trades); the largest negative months are 2025-11 (`-4.3707%`) and 2025-12 (`-3.7358%`). This is an accounting-date concentration diagnostic, not a post-hoc market-state classification.
+
+The same evidence file directly tests the q=99 rule on 87 raw threshold-passing assessment events before non-overlap selection and 5 bp costs. The overall directional hit rate is `54.023%` (47/87; 95% Wilson interval `43.603%` to `64.103%`) and mean gross directional return is `0.1135%`. Long triggers show `65.854%` hits and `+0.3436%` mean directional return (41 events), whereas short triggers show `43.478%` hits and `-0.0915%` (46 events). Absolute-score quartiles have non-monotonic mean returns (`+0.6510%`, `-0.5180%`, `+0.0638%`, and `+0.2551%`), and no hit-rate interval excludes 50%. The full-event rank IC is therefore a supplementary ordering diagnostic, while the direct tail test also provides insufficiently precise evidence of conditional directional information.
 
 ## Data-source and missingness audits
 
