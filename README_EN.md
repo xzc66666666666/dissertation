@@ -1,76 +1,60 @@
 # BTCUSDT 5bp Scheme 5 Factor-Mining Reproduction Package
 
-For GitHub publication and repository-specific setup notes, see
-[`REPOSITORY_GUIDE.md`](REPOSITORY_GUIDE.md). The guide records the exact
-reproduction boundary and the inputs that are intentionally kept outside this
-repository.
+This repository is the code-and-evidence companion to the dissertation's FRPE-2D case study. The research instrument is the Binance BTCUSDT USDT-margined perpetual futures contract. Historical artifact paths containing `spot` are immutable legacy names and do not identify the market used in the calculations.
 
-This is an isolated packaging of the Scheme 5 factor-mining workflow, archived as `btc_factor_scheme5_factor_mining_package_20260823`. It does not overwrite the existing 5bp, 20bp, or 30bp research packages. The underlying experiment identifier is `btc_cost5_scheme5_frozen_selection_20260822_v1`.
+For the repository boundary and external inputs, see [`REPOSITORY_GUIDE.md`](REPOSITORY_GUIDE.md). This file is synchronized with [`README.md`](README.md).
 
-## Scope
+## Final factor
 
-- Asset: BTCUSDT spot event data.
-- Candidate definitions: the 1,200 exact long-horizon factors retained by the original 5bp run.
-- Cost: 5bp deducted once for each completed round-trip trade.
-- Final factor: `BTC_LONG_5b55989455e686eb_2d`.
-- `2d` denotes a maximum holding horizon of about 48 hours; positions for the same factor do not overlap.
-- Threshold history: each monthly absolute-score threshold uses the preceding 180 calendar days and is unavailable until at least 500 prior event observations exist.
-- Timing: the decision uses only features available by the event timestamp; entry uses the archived event-table price at least 60 seconds after the decision timestamp.
+- Factor ID: `BTC_LONG_5b55989455e686eb_2d`
+- Formula: `(x_flow_price_gap*x_close_location) | (x_flow_mean_12*m1_return_efficiency_5) | (x_flow_mean_72*x_return_efficiency_288)`
+- Instrument: Binance BTCUSDT USDT-M perpetual futures
+- Horizon: approximately 48 hours, with no overlapping positions for the factor
+- Cost: 5 bp deducted once per completed round trip
+- Threshold: monthly `q=99` of absolute score from the preceding 180 calendar days, requiring at least 500 prior events
+- Timing: features must be available by `decision_time`; archived entry occurs at least 60 seconds later
+
+The parameter choices are archived reconstruction settings. The archive does not establish that the factor, `q=99`, 180-day window, or 60-second delay were externally registered before the 2025-2026 outcomes were observed. The final period is therefore a historical assessment, not a genuine holdout or out-of-sample test.
 
 ## Frozen workflow
 
-1. Factor direction and rolling threshold quantiles are fixed in the development stage.
-2. Seven consecutive 180-day selection blocks run from 2022-01-07 inclusive to 2025-06-20 exclusive. The stable tier requires at least five positive blocks; the core tier requires at least six.
-3. Candidate de-duplication uses feature-lineage overlap and development-validation score correlation. This freezes a catalogue of 100 factors, including 12 core factors.
-4. Scheme 5 requires: core tier, `q=99`, at least six positive selection blocks, and no more than 30% of positive profit contributed by the five largest winning trades.
-5. Eligible factors receive equal-weight ordinal ranks on four specified criteria. Rank 1 is frozen as the final factor.
-6. The frozen factor is then executed across two consecutive 180-day assessment blocks from 2025-06-20 inclusive to 2026-06-15 exclusive.
+1. Start from the 1,200 exact long-horizon definitions retained by the original 5 bp run.
+2. Evaluate seven consecutive 180-day selection blocks from 2022-01-07 inclusive to 2025-06-20 exclusive.
+3. Apply stability, core-tier, lineage-overlap, and score-correlation filters to freeze a 100-factor catalogue, including 12 core factors.
+4. Require core tier, `q=99`, at least six positive selection blocks, and no more than 30% of positive profit from the five largest winners.
+5. Rank eligible factors on four equal-weight ordinal criteria and freeze rank 1.
+6. Assess the frozen factor from 2025-06-20 inclusive to 2026-06-15 exclusive in two report-only 180-day blocks.
 
-## Scheme 5 ranking
+## Audit findings
 
-The following criteria are ranked independently and summed; the lowest total receives rank 1:
-
-- Cross-stage signal redundancy, ascending;
-- Absolute gap between development-validation CAGR and seven-block selection CAGR, ascending;
-- Absolute gap between development-validation and seven-block mean gross trade return (bp), ascending;
-- Completed trade count in the seven-block selection period, descending.
-
-Ties are resolved by `balanced_cagr` descending, then factor ID ascending.
-
-## Execution sequence
-
-The workflow uses UTC decision timestamps, feature-availability timestamps, and fixed-horizon labels. The final catalogue is recorded before the assessment run; the assessment starts flat and records the catalogue hash at completion. The stored event-table entry price is a research label endpoint, not evidence of a contemporaneous executable fill. Validation evidence is stored in `evidence/validation.json`.
+- `evidence/usdtm_source_identity.json` verifies all 78 monthly source hashes against official Binance Vision USDT-M Kline checksums. All 78 match.
+- The apparent 2,325-minute discrepancy came from comparing separate Binance spot annual files with perpetual-futures data. All 2,325 perpetual rows exist and have positive trade counts; they were not synthetic gap fills.
+- `evidence/frpe_snapshot_equivalence.json` compares the discovery and final-selection/MTM snapshots across 49,486 keyed rows, including 7,769 assessment rows.
+- The largest six-input difference is `1.145e-12`. Scores, monthly thresholds, 87 raw triggers, 49 completed trades, and every reported performance metric are exactly invariant.
+- Four event rows contain a missing value in one of the six inputs (`0.00804%` of 49,773 events). None is in the assessment trigger set; complete-case deletion produces identical thresholds, trades, and performance.
 
 ## Reproduction
 
-Run from this directory:
+Run from a clean copy of this directory:
 
 ```bash
 ./run_full_scheme5.sh
 ```
 
-The default configuration relies on the verified long-horizon feature table, the original 5bp factor definitions, and the Python environment in the adjacent directory `../btc_factor_fullchain_bundle_cost20bp_20260822/`. It does not regenerate the one-million-candidate search. To protect existing outputs, the command stops if any of these directories already exists:
-
-- `reproduced/selection_7fold/`
-- `reproduced/frozen_library/`
-- `reproduced/scheme5_final_factor/`
-- `reproduced/holdout_2fold/`
-
-For a clean rerun, execute in a new copy of this package.
+The runner relies on the external full-chain bundle for the large event-feature snapshot, retained candidate specifications, original miner, and Python environment. It does not regenerate the one-million-candidate search and stops if output directories already exist.
 
 ## Contents
 
-| File or directory | Contents |
+| Path | Purpose |
 |---|---|
-| `config.json` | Frozen dates, costs, thresholds, and Scheme 5 rank rules |
-| `code/` | Seven-block selection, catalogue freeze, Scheme 5 ranking, assessment, and validation code |
-| `reproduced/frozen_library/` | 100-factor frozen catalogue, 12 core factors, de-duplication correlations, and seven-block ledgers |
-| `reproduced/scheme5_final_factor/` | Ranking of the four eligible factors and the one-factor final catalogue |
-| `reproduced/holdout_2fold/` | Assessment metrics, returns, and completed-trade ledger for the two blocks |
-| `evidence/experiment_summary.json` | Experiment summary, artifact locations, and hashes |
-| `evidence/validation.json` | Boundary, cost, catalogue, rank, and historical-prefix consistency checks |
-| `RESULTS.md` | Reproduced-result summary |
+| `START_HERE.md` | Recommended review sequence |
+| `STRATEGY_SPEC.md` | Factor, feature, event, timing, and accounting contract |
+| `code/` | Selection, assessment, validation, and audit scripts |
+| `reproduced/` | Frozen catalogues, rankings, metrics, and trade ledgers |
+| `evidence/` | Experiment summary, validation, feature contract, and new audits |
+| `RESULTS.md` | Results and evidential interpretation |
+| `PACKAGE_MANIFEST.md` | Package contents and external-input boundary |
 
-## Research stage
+## Research status
 
-This is a reproducible research package. It does not include evidence on real fills, independent market-impact modelling, live latency, funding costs, or live-trading controls; its current stage is research candidate.
+This is a historical research candidate, not evidence of validated alpha or an investment recommendation. The package does not establish real fills, independent market impact, live latency, funding costs, capacity, paper trading, or production risk controls.

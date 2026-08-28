@@ -1,0 +1,101 @@
+{
+  "status": "PASS",
+  "market": {
+    "venue": "Binance",
+    "instrument": "BTCUSDT USDT-margined perpetual futures",
+    "source_family": "Binance Vision data/futures/um/monthly/klines/BTCUSDT/1m",
+    "timezone": "UTC",
+    "legacy_artifact_name_note": "Paths containing the token spot are historical artifact names and do not define the underlying market."
+  },
+  "source_counts": {
+    "one_minute_rows": 3417120,
+    "one_minute_partitions": 78,
+    "five_minute_rows": 683424,
+    "raw_event_rows": 118695,
+    "selected_event_rows": 49773
+  },
+  "timestamps": {
+    "bar_open_time": "UTC bar opening timestamp",
+    "bar_close_time": "UTC bar closing timestamp",
+    "normalized_available_time": "one-minute bar close plus 5 seconds",
+    "feature_available_time": "latest source-minute availability in the five-minute bucket",
+    "decision_time": "equal to feature_available_time",
+    "entry_time": "first one-minute close in the next five-minute bucket, strictly after decision_time",
+    "availability_violations": 0
+  },
+  "event_construction": {
+    "history_days": 30,
+    "minimum_history_days": 7,
+    "cooldown_minutes": 15,
+    "triggers": [
+      "absolute 15-minute taker-base imbalance at or above its shifted prior-30-day q=99 threshold",
+      "absolute five-minute return at or above its shifted prior-30-day q=99 threshold",
+      "prior-history volume z-score at or above 2.5",
+      "prior-history trade-count z-score at or above 2.5",
+      "15-minute realised-volatility ratio at or above 2.0 relative to its shifted prior-30-day median"
+    ],
+    "post_trigger_filters": [
+      "15-minute cooldown, equivalent to three five-minute bars",
+      "entry_time strictly later than decision_time",
+      "valid eight-hour exit required"
+    ]
+  },
+  "flow_definition": {
+    "formula": "2 * taker_buy_base_volume / base_volume - 1",
+    "source": "Binance USDT-M Futures Kline taker-buy base volume",
+    "not_used": [
+      "bar-direction inference",
+      "direct signed-trade reconstruction"
+    ]
+  },
+  "frpe_inputs": {
+    "x_flow_price_gap": {
+      "formula": "flow - tanh(100 * log(close/open))",
+      "window": "current completed five-minute bar",
+      "minimum_observations": 1
+    },
+    "x_close_location": {
+      "formula": "clip((close-low)/(high-low)-0.5, -1, 1)",
+      "window": "current completed five-minute bar",
+      "minimum_observations": 1
+    },
+    "x_flow_mean_12": {
+      "formula": "rolling_mean(flow, 12)",
+      "window": "12 five-minute bars = 1 hour",
+      "minimum_observations": 6
+    },
+    "m1_return_efficiency_5": {
+      "formula": "abs(sum(one-minute close-to-close log returns, 5)) / sum(abs(one-minute close-to-close log returns), 5)",
+      "window": "5 one-minute bars = 5 minutes",
+      "minimum_observations": 3
+    },
+    "x_flow_mean_72": {
+      "formula": "rolling_mean(flow, 72)",
+      "window": "72 five-minute bars = 6 hours",
+      "minimum_observations": 36
+    },
+    "x_return_efficiency_288": {
+      "formula": "abs(sum(five-minute log returns, 288)) / sum(abs(five-minute log returns), 288)",
+      "window": "288 five-minute bars = 24 hours",
+      "minimum_observations": 144
+    }
+  },
+  "missingness_all_49773_events": {
+    "x_flow_price_gap": 0,
+    "x_close_location": 0,
+    "x_flow_mean_12": 2,
+    "m1_return_efficiency_5": 2,
+    "x_flow_mean_72": 0,
+    "x_return_efficiency_288": 0,
+    "rows_missing_any_of_six": 4,
+    "rate_missing_any_of_six": 0.00008036485664958994,
+    "assessment_rows_missing_any_of_six": 0
+  },
+  "nonfinite_rule": "Robustly standardised non-finite values are mapped to zero after development-calibration median/IQR scaling and clipping to [-8, 8].",
+  "complete_case_sensitivity": {
+    "assessment_thresholds_equal": true,
+    "raw_trigger_set_equal": true,
+    "nonoverlap_49_trade_ledger_equal": true,
+    "all_performance_metrics_equal": true
+  }
+}

@@ -1,8 +1,8 @@
 {
   "experiment_id": "btc_cost5_scheme5_frozen_selection_20260822_v1",
   "hypothesis": {
-    "summary": "A low-redundancy, cross-stage-stable BTCUSDT event-state factor may retain positive directional returns after a 5bp completed-trade cost.",
-    "asset_universe": ["BTCUSDT"],
+    "summary": "A low-redundancy, cross-stage-stable BTCUSDT USDT-M perpetual-futures event-state factor may retain positive directional returns after a 5bp completed-trade cost; the archived historical assessment does not establish this expectation.",
+    "asset_universe": ["Binance BTCUSDT USDT-M perpetual futures"],
     "decision_time": "event decision_time with m1_feature_available_time <= decision_time",
     "execution_time": "entry_time at least 60 seconds after decision_time"
   },
@@ -10,7 +10,9 @@
     "snapshot_id": "extended feature source plus original 5bp MPS candidate specification sha256 15009b700b847a55694915a99506ea26562aaa6681a468e11100e1599955d0c7",
     "path": "../btc_factor_fullchain_bundle_cost20bp_20260822/reproduced/full_reproduction_cost20_20260822_01/spot_events_extended_horizons_v1/spot_event_direction_features_extended_horizons.parquet",
     "pit_policy": "m1_feature_available_time <= decision_time; selection labels mature by 2025-06-20",
-    "calendar": "Binance spot 24x7 UTC"
+    "calendar": "Binance USDT-M perpetual futures, 24x7 UTC",
+    "source_identity_evidence": "evidence/usdtm_source_identity.json",
+    "legacy_path_note": "The immutable source artifact name contains 'spot' but the embedded monthly source hashes match official Binance USDT-M Futures Kline ZIP files."
   },
   "code": {
     "repo": "local workspace",
@@ -18,15 +20,17 @@
     "entrypoints": {
       "prepare_data": "reuse frozen extended feature snapshot and 1,200 development-selected definitions",
       "train": "build_selection_7fold.py; finalize_selection_7fold.py; select_scheme5_final_factor.py",
-      "backtest": "evaluate_holdout_2fold.py (post-freeze assessment)",
-      "report": "build_scheme5_summary.py; validate_scheme5_outputs.py"
+      "backtest": "evaluate_holdout_2fold.py (historical post-freeze assessment; legacy filename)",
+      "report": "build_scheme5_summary.py; validate_scheme5_outputs.py",
+      "audit": "audit_frpe_snapshot_equivalence.py; audit_usdtm_source_identity.py"
     }
   },
   "config": {
     "path": "config.json",
     "random_seed": 20260819,
     "train_window": "development before 2022-01-07; seven-fold stability selection 2022-01-07..2025-06-20",
-    "post_freeze_assessment_window": "2025-06-20..2026-06-15, two report-only 180-day folds"
+    "post_freeze_assessment_window": "2025-06-20..2026-06-15, two report-only 180-day folds",
+    "registration_status": "No evidence establishes that the factor and evaluation settings were externally registered before assessment outcomes were observed."
   },
   "backtest": {
     "fee_model": "5bp deducted once per completed trade",
@@ -38,13 +42,18 @@
     "metrics_path": "evidence/experiment_summary.json",
     "orders_path": "reproduced/holdout_2fold/holdout_trade_ledger.parquet",
     "positions_path": "reproduced/holdout_2fold/holdout_trade_ledger.parquet",
-    "report_path": "RESULTS.md"
+    "report_path": "RESULTS.md",
+    "feature_contract_path": "evidence/frpe_feature_contract.json",
+    "snapshot_equivalence_path": "evidence/frpe_snapshot_equivalence.json",
+    "source_identity_path": "evidence/usdtm_source_identity.json"
   },
   "promotion_gate": {
     "stage": "candidate",
     "verdict": "WARN",
     "blocking_gaps": [
-      "No real fill, latency, market impact, or paper-trading evidence."
+      "No real fill, funding, latency, market impact, or paper-trading evidence.",
+      "No documented prospective registration of the factor and evaluation settings.",
+      "The complete raw-to-clean normalisation program is not included in the public repository."
     ]
   }
 }

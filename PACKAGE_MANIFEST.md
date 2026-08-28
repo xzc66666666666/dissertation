@@ -3,29 +3,47 @@
 ## Package identity
 
 - Package directory: `btc_factor_scheme5_factor_mining_package_20260823`
-- Experiment identifier: `btc_cost5_scheme5_frozen_selection_20260822_v1`
-- Cost convention: 5bp deducted for each completed round-trip trade
+- Experiment ID: `btc_cost5_scheme5_frozen_selection_20260822_v1`
+- Market: Binance BTCUSDT USDT-M perpetual futures
+- Cost: 5 bp per completed round trip
 - Final factor: `BTC_LONG_5b55989455e686eb_2d`
-- Timing convention: monthly q=99 thresholds use the preceding 180 calendar days and require at least 500 prior event observations; entry is at least 60 seconds after the decision timestamp.
+- Timing: monthly `q=99` thresholds use the preceding 180 calendar days after at least 500 prior events; archived entry is at least 60 seconds after the decision
+- Evidential status: historical assessment; prior external parameter registration is not established
 
 ## Code entry points
 
-1. `code/build_selection_7fold.py`: generates seven selection blocks using the fixed 1,200 definitions.
-2. `code/finalize_selection_7fold.py`: applies the stable/core thresholds, de-duplicates candidates, and writes the 100-factor frozen catalogue.
-3. `code/select_scheme5_final_factor.py`: applies the Scheme 5 thresholds and ranks eligible candidates.
-4. `code/evaluate_holdout_2fold.py`: runs the frozen factor across two staged assessment blocks.
-5. `code/build_scheme5_summary.py` and `code/validate_scheme5_outputs.py`: generate the summary and validate archived artifacts.
-6. `STRATEGY_SPEC.md`: a one-page specification of the final factor, selection thresholds, execution convention, and reproduced results.
+1. `code/build_selection_7fold.py`: generate the seven selection blocks from 1,200 retained definitions.
+2. `code/finalize_selection_7fold.py`: apply tier filters and de-duplication, then freeze the 100-factor catalogue.
+3. `code/select_scheme5_final_factor.py`: apply Scheme 5 eligibility and rank the candidates.
+4. `code/evaluate_holdout_2fold.py`: run the frozen factor over the historical assessment period. `holdout` is a retained legacy filename, not an evidential claim.
+5. `code/build_scheme5_summary.py`: build the archived experiment summary.
+6. `code/validate_scheme5_outputs.py`: validate boundaries, catalogue identity, cost convention, and historical-prefix consistency.
+7. `code/audit_frpe_snapshot_equivalence.py`: compare the discovery and final snapshots, rebuild scores and thresholds, and compare triggers, ledgers, metrics, and missing-value sensitivity.
+8. `code/audit_usdtm_source_identity.py`: compare embedded monthly source hashes with official Binance USDT-M checksums and audit the 2,325 cross-market timestamps.
 
-## Inputs required for a full rerun
+## Evidence
 
-- A long-horizon event-feature snapshot;
-- The 1,200 factor definitions and candidate specifications retained by the original 5bp run;
-- Original causal rolling-audit artifacts for historical-prefix consistency checks;
-- A Python environment containing NumPy, pandas, and PyArrow.
+| File | Contents |
+|---|---|
+| `evidence/experiment_summary.json` | Experiment counts, dates, outputs, and hashes |
+| `evidence/validation.json` | Archived workflow validation checks |
+| `evidence/frpe_feature_contract.json` | Machine-readable definitions of flow and the six FRPE inputs |
+| `evidence/frpe_snapshot_equivalence.json` | 49,486-row numerical and economic equivalence audit |
+| `evidence/usdtm_source_identity.json` | 78-month official checksum audit and 2,325-timestamp comparison |
 
-See `run_full_scheme5.sh` for the default paths. They can be overridden through environment variables with the same names.
+## External inputs required for full replay
 
-## Archive checks
+- The large long-horizon event-feature snapshots;
+- The original one-million-candidate miner;
+- The retained candidate-specification archive and 1,200 exact definitions;
+- Original causal rolling-audit artifacts;
+- The cleaned monthly minute partitions for rerunning the source audit;
+- Python with NumPy, pandas, and PyArrow.
 
-`evidence/validation.json` records the results of 20 checks covering the frozen catalogue, Scheme 5 ranking, catalogue membership, time boundaries, cost convention, and historical-ledger consistency.
+These large or upstream inputs are not committed to this repository. `run_full_scheme5.sh` accepts their locations through `ORIGINAL_ROOT`, `PYTHON`, `MINER`, `SOURCE`, `RUN`, and `ORIGINAL_ROLLING`.
+
+## Naming note
+
+Historical artifact paths containing `spot` and code paths containing `holdout` are preserved to avoid breaking hashes and replay scripts. The official checksum audit identifies the research data as USDT-M perpetual futures, and the final 360-day period is reported only as a historical assessment.
+
+Frozen categorical values in archived CSV/JSON outputs, including original Chinese tier and factor-family labels, are also preserved because translating them would change catalogue hashes and the replay contract. Repository documentation and user-facing runner messages are English.

@@ -1,57 +1,60 @@
-# BTCUSDT 5bp 方案5因子挖掘
+# BTCUSDT 5bp Scheme 5 Factor-Mining Reproduction Package
 
-这是方案5的独立复现归档，目录名为 `btc_factor_scheme5_factor_mining_package_20260823`。研究成本为每笔完整往返交易扣除5bp。
+This repository is the code-and-evidence companion to the dissertation's FRPE-2D case study. The research instrument is the Binance BTCUSDT USDT-margined perpetual futures contract. Historical artifact paths containing `spot` are immutable legacy names and do not identify the market used in the calculations.
 
-## 最终因子
+For the repository boundary and external inputs, see [`REPOSITORY_GUIDE.md`](REPOSITORY_GUIDE.md). [`README_EN.md`](README_EN.md) is the synchronized English mirror of this file.
 
-- 因子：`BTC_LONG_5b55989455e686eb_2d`
-- 公式：`(x_flow_price_gap*x_close_location) | (x_flow_mean_12*m1_return_efficiency_5) | (x_flow_mean_72*x_return_efficiency_288)`
-- `2d`：单笔最长持仓约48小时，同一因子不重叠持仓。
-- 阈值：每月使用前180个日历日的绝对分数；历史观测少于500条时不生成阈值。
-- 时序：决策只使用当时可用的特征，入场至少晚于决策时间60秒；存档的入场价是研究标签端点，不等同于已验证的实际成交价。
+## Final factor
 
-## 固定流程
+- Factor ID: `BTC_LONG_5b55989455e686eb_2d`
+- Formula: `(x_flow_price_gap*x_close_location) | (x_flow_mean_12*m1_return_efficiency_5) | (x_flow_mean_72*x_return_efficiency_288)`
+- Instrument: Binance BTCUSDT USDT-M perpetual futures
+- Horizon: approximately 48 hours, with no overlapping positions for the factor
+- Cost: 5 bp deducted once per completed round trip
+- Threshold: monthly `q=99` of absolute score from the preceding 180 calendar days, requiring at least 500 prior events
+- Timing: features must be available by `decision_time`; archived entry occurs at least 60 seconds later
 
-1. 使用原5bp运行中固定的1,200条精确长周期因子定义。
-2. 在2022-01-07（含）至2025-06-20（不含）的7个连续180日段上计算稳定性；稳定层要求至少5段正收益，核心层要求至少6段正收益。
-3. 按字段血缘重叠和开发验证分数相关性去重，形成100条冻结目录，其中12条为核心因子。
-4. 方案5基础门槛：核心层、`q=99`、至少6个正收益段、前5笔盈利交易的利润贡献不超过30%。
-5. 对合格候选按四项指标作等权序数排名，冻结排名第1的因子。
-6. 对冻结因子在2025-06-20（含）至2026-06-15（不含）的两个连续180日段进行阶段化评估。
+The parameter choices are archived reconstruction settings. The archive does not establish that the factor, `q=99`, 180-day window, or 60-second delay were externally registered before the 2025-2026 outcomes were observed. The final period is therefore a historical assessment, not a genuine holdout or out-of-sample test.
 
-## 方案5排名规则
+## Frozen workflow
 
-四项指标分别排名后求和，名次和最低者为第1名：
+1. Start from the 1,200 exact long-horizon definitions retained by the original 5 bp run.
+2. Evaluate seven consecutive 180-day selection blocks from 2022-01-07 inclusive to 2025-06-20 exclusive.
+3. Apply stability, core-tier, lineage-overlap, and score-correlation filters to freeze a 100-factor catalogue, including 12 core factors.
+4. Require core tier, `q=99`, at least six positive selection blocks, and no more than 30% of positive profit from the five largest winners.
+5. Rank eligible factors on four equal-weight ordinal criteria and freeze rank 1.
+6. Assess the frozen factor from 2025-06-20 inclusive to 2026-06-15 exclusive in two report-only 180-day blocks.
 
-- 跨阶段信号冗余度，升序；
-- 开发验证CAGR与7段选择CAGR的绝对差，升序；
-- 开发验证与7段选择平均单笔毛收益（bp）的绝对差，升序；
-- 7段选择期完整交易数，降序。
+## Audit findings
 
-并列时依次按 `balanced_cagr` 降序、因子ID升序处理。
+- `evidence/usdtm_source_identity.json` verifies all 78 monthly source hashes against official Binance Vision USDT-M Kline checksums. All 78 match.
+- The apparent 2,325-minute discrepancy came from comparing separate Binance spot annual files with perpetual-futures data. All 2,325 perpetual rows exist and have positive trade counts; they were not synthetic gap fills.
+- `evidence/frpe_snapshot_equivalence.json` compares the discovery and final-selection/MTM snapshots across 49,486 keyed rows, including 7,769 assessment rows.
+- The largest six-input difference is `1.145e-12`. Scores, monthly thresholds, 87 raw triggers, 49 completed trades, and every reported performance metric are exactly invariant.
+- Four event rows contain a missing value in one of the six inputs (`0.00804%` of 49,773 events). None is in the assessment trigger set; complete-case deletion produces identical thresholds, trades, and performance.
 
-## 一键复算
+## Reproduction
 
-在本目录执行：
+Run from a clean copy of this directory:
 
 ```bash
 ./run_full_scheme5.sh
 ```
 
-默认使用相邻目录 `../btc_factor_fullchain_bundle_cost20bp_20260822/` 中已核验的长周期特征表、原5bp候选定义和Python环境。该脚本复算7段筛选、冻结目录、方案5排名、两段评估、摘要与验证；不会重新生成百万候选。脚本检测到已有输出目录时会停止，请在新副本中运行完整复算。
+The runner relies on the external full-chain bundle for the large event-feature snapshot, retained candidate specifications, original miner, and Python environment. It does not regenerate the one-million-candidate search and stops if output directories already exist.
 
-## 主要文件
+## Contents
 
-| 路径 | 内容 |
+| Path | Purpose |
 |---|---|
-| `config.json` | 日期、成本、稳定/核心门槛和排名组件 |
-| `code/` | 7段筛选、目录冻结、方案5排名、评估与验证脚本 |
-| `reproduced/frozen_library/` | 100条冻结目录、12条核心因子、相关性和7段账本 |
-| `reproduced/scheme5_final_factor/` | 4条合格候选排名及最终单因子目录 |
-| `reproduced/holdout_2fold/` | 两段评估指标、收益和逐笔交易账本 |
-| `evidence/` | 实验摘要、验证结果和产物哈希 |
-| `RESULTS.md` | 本次归档的结果摘要 |
+| `START_HERE.md` | Recommended review sequence |
+| `STRATEGY_SPEC.md` | Factor, feature, event, timing, and accounting contract |
+| `code/` | Selection, assessment, validation, and audit scripts |
+| `reproduced/` | Frozen catalogues, rankings, metrics, and trade ledgers |
+| `evidence/` | Experiment summary, validation, feature contract, and new audits |
+| `RESULTS.md` | Results and evidential interpretation |
+| `PACKAGE_MANIFEST.md` | Package contents and external-input boundary |
 
-## 研究阶段
+## Research status
 
-这是研究候选，未包含真实成交、独立市场冲击、实时延迟、资金费率或实盘风控证据。
+This is a historical research candidate, not evidence of validated alpha or an investment recommendation. The package does not establish real fills, independent market impact, live latency, funding costs, capacity, paper trading, or production risk controls.

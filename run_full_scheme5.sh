@@ -13,14 +13,14 @@ LIBRARY="$ROOT/reproduced/frozen_library"
 FINAL="$ROOT/reproduced/scheme5_final_factor"
 HOLDOUT="$ROOT/reproduced/holdout_2fold"
 
-test -x "$PYTHON" || { echo "Python运行环境不存在: $PYTHON" >&2; exit 2; }
-test -f "$MINER" || { echo "矿工脚本不存在: $MINER" >&2; exit 2; }
-test -f "$SOURCE" || { echo "长周期特征表不存在: $SOURCE" >&2; exit 2; }
-test -f "$RUN/retained_factor_definitions.csv" || { echo "5bp的1,200条冻结定义不存在: $RUN" >&2; exit 2; }
-test ! -e "$SELECTION" || { echo "输出已存在: $SELECTION" >&2; exit 2; }
-test ! -e "$LIBRARY" || { echo "输出已存在: $LIBRARY" >&2; exit 2; }
-test ! -e "$FINAL" || { echo "输出已存在: $FINAL" >&2; exit 2; }
-test ! -e "$HOLDOUT" || { echo "输出已存在: $HOLDOUT" >&2; exit 2; }
+test -x "$PYTHON" || { echo "Python environment not found: $PYTHON" >&2; exit 2; }
+test -f "$MINER" || { echo "Miner script not found: $MINER" >&2; exit 2; }
+test -f "$SOURCE" || { echo "Long-horizon feature table not found: $SOURCE" >&2; exit 2; }
+test -f "$RUN/retained_factor_definitions.csv" || { echo "The 1,200 retained 5bp definitions were not found: $RUN" >&2; exit 2; }
+test ! -e "$SELECTION" || { echo "Output already exists: $SELECTION" >&2; exit 2; }
+test ! -e "$LIBRARY" || { echo "Output already exists: $LIBRARY" >&2; exit 2; }
+test ! -e "$FINAL" || { echo "Output already exists: $FINAL" >&2; exit 2; }
+test ! -e "$HOLDOUT" || { echo "Output already exists: $HOLDOUT" >&2; exit 2; }
 
 mkdir -p "$ROOT/reproduced"
 
@@ -45,4 +45,4 @@ mkdir -p "$ROOT/reproduced"
 "$PYTHON" "$ROOT/code/validate_scheme5_outputs.py" --root "$ROOT" \
   --original-rolling "$ORIGINAL_ROLLING"
 
-echo "完成：$ROOT/evidence/experiment_summary.json"
+echo "Completed: $ROOT/evidence/experiment_summary.json"
