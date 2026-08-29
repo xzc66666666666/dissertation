@@ -13,9 +13,9 @@ Public repository: `https://github.com/xzc66666666666/dissertation` on branch `m
 
 ## External boundary
 
-The repository does not include the large discovery and final event-feature snapshots, the original one-million-candidate miner, the retained candidate-specification NPZ, the 1,200 upstream definitions, or the cleaned 3,417,120-row minute dataset. These remain in the local research archive and are supplied to the scripts by path.
+The repository does not include the large discovery and final event-feature snapshots, the original one-million-candidate miner, the original 20,000-stage ledger, the complete candidate payoff matrix, the retained candidate-specification NPZ, the 1,200 upstream definitions, or the cleaned 3,417,120-row minute dataset. Retained inputs used by some scripts remain in the local research archive and are supplied by path; the original 20,000-stage ledger and complete payoff matrix are not available for independent reconstruction.
 
-The absence of those large inputs means a fresh visitor can inspect the code and archived evidence but cannot independently execute the complete raw-data-to-factor chain from this repository alone. The original normalisation program that wrote the cleaned Parquet partitions is also not published. This is a disclosed reproducibility boundary, even though the source identity of all 78 stored partitions has now been independently checked against official Binance USDT-M checksums.
+The absence of those inputs means a fresh visitor can inspect downstream selection and assessment code, archived outputs, and ledger-based audits, but cannot independently execute the complete raw-data-to-factor chain or reconstruct why FRPE-2D was selected from the full million-specification search. The original normalisation program that wrote the cleaned Parquet partitions is also not published. The appropriate description is a **partial retrospective reconstruction of the retained search trail**. This boundary remains even though the source identity of all 78 stored partitions has been checked against official Binance USDT-M checksums.
 
 ## Full replay
 

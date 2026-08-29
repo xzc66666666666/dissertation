@@ -16,6 +16,9 @@
 4. Inspect `evidence/usdtm_source_identity.json` for the 78-month official source-hash audit and the resolution of the 2,325-minute cross-market discrepancy.
 5. Inspect `evidence/frpe_snapshot_equivalence.json` for the keyed discovery-versus-final snapshot comparison.
 6. Read `RESULTS.md` and inspect `reproduced/scheme5_final_factor/scheme5_candidate_ranking.csv`.
+7. Inspect `evidence/assessment_direction_attribution.json` for the long-only, short-only, and timing-matched all-long decomposition of the public 49-trade ledger.
+
+This review path supports a partial retrospective reconstruction of the retained search trail. It does not independently reconstruct the unavailable 20,000-stage decisions or the reason FRPE-2D prevailed over the full searched universe.
 7. Review `evidence/validation.json`; the archived workflow checks are PASS.
 8. Run `./run_full_scheme5.sh` in a clean package copy when the external full-chain inputs are available.
 

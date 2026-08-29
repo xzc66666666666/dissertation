@@ -21,6 +21,7 @@
 7. `code/audit_frpe_snapshot_equivalence.py`: compare the discovery and final snapshots, rebuild scores and thresholds, and compare triggers, ledgers, metrics, and missing-value sensitivity.
 8. `code/audit_usdtm_source_identity.py`: compare embedded monthly source hashes with official Binance USDT-M checksums and audit the 2,325 cross-market timestamps.
 9. `code/audit_assessment_concentration_and_tail.py`: quantify completed-trade profit concentration and test directional information directly on the raw monthly-q=99 tail triggers.
+10. `code/audit_assessment_direction_attribution.py`: decompose the public 49-trade ledger into long-only and short-only variants and construct a timing-matched all-long endpoint benchmark.
 
 ## Evidence
 
@@ -32,17 +33,19 @@
 | `evidence/frpe_snapshot_equivalence.json` | 49,486-row numerical and economic equivalence audit |
 | `evidence/usdtm_source_identity.json` | 78-month official checksum audit and 2,325-timestamp comparison |
 | `evidence/assessment_tail_and_concentration.json` | Post-selection audit of 49 completed trades, removal sensitivity, monthly realised-P&L concentration, and 87 raw q=99 triggers |
+| `evidence/assessment_direction_attribution.json` | Downstream-only long/short attribution and timing-matched all-long comparison for the 49 archived trade intervals |
 
 ## External inputs required for full replay
 
 - The large long-horizon event-feature snapshots;
 - The original one-million-candidate miner;
+- The original 20,000-stage ledger and complete candidate payoff matrix;
 - The retained candidate-specification archive and 1,200 exact definitions;
 - Original causal rolling-audit artifacts;
 - The cleaned monthly minute partitions for rerunning the source audit;
 - Python with NumPy, pandas, and PyArrow.
 
-These large or upstream inputs are not committed to this repository. `run_full_scheme5.sh` accepts their locations through `ORIGINAL_ROOT`, `PYTHON`, `MINER`, `SOURCE`, `RUN`, and `ORIGINAL_ROLLING`.
+These large or upstream inputs are not committed to this repository. Some, including the original 20,000-stage ledger and complete candidate payoff matrix, are not available for independent replay. `run_full_scheme5.sh` accepts the retained external inputs through `ORIGINAL_ROOT`, `PYTHON`, `MINER`, `SOURCE`, `RUN`, and `ORIGINAL_ROLLING`. The package therefore supports a partial retrospective reconstruction of the retained search trail, not a full reconstruction of why FRPE-2D won the upstream search.
 
 ## Naming note
 

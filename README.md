@@ -1,6 +1,6 @@
-# BTCUSDT 5bp Scheme 5 Factor-Mining Reproduction Package
+# BTCUSDT FRPE-2D Retrospective Audit Package
 
-This repository is the code-and-evidence companion to the dissertation's FRPE-2D case study. The research instrument is the Binance BTCUSDT USDT-margined perpetual futures contract. Historical artifact paths containing `spot` are immutable legacy names and do not identify the market used in the calculations.
+This repository is the code-and-evidence companion to the dissertation's FRPE-2D case study. It supports a **partial retrospective reconstruction of the retained search trail**: the preserved downstream selection, assessment, trade-ledger, and audit calculations can be inspected, but the repository does not independently reconstruct why FRPE-2D prevailed in the original million-specification search. The research instrument is the Binance BTCUSDT USDT-margined perpetual futures contract. Historical artifact paths containing `spot` are immutable legacy names and do not identify the market used in the calculations.
 
 For the repository boundary and external inputs, see [`REPOSITORY_GUIDE.md`](REPOSITORY_GUIDE.md).
 
@@ -29,6 +29,8 @@ The parameter choices are archived reconstruction settings. The archive does not
 
 `code/audit_assessment_concentration_and_tail.py` records two deliberately separate audits.  It quantifies realised-profit concentration from the 49 completed non-overlapping, 5 bp costed trades, then tests the q=99 rule's directional information on all 87 raw threshold-passing assessment events before overlap selection and costs.  Its JSON output is `evidence/assessment_tail_and_concentration.json`.  These are post-selection historical diagnostics, not prospective confirmation or preregistration evidence.
 
+`code/audit_assessment_direction_attribution.py` is a downstream-only audit of the public 49-trade ledger. It reports long-only, short-only, and timing-matched all-long variants in `evidence/assessment_direction_attribution.json`. The raw 87-trigger diagnostic is long-favouring, but the completed costed ledger has positive long-only and short-only subsets; the same-timing all-long benchmark is near flat. This contrast does not establish stable bidirectional predictability because all variants remain post-selection.
+
 ## Audit findings
 
 - `evidence/usdtm_source_identity.json` verifies all 78 monthly source hashes against official Binance Vision USDT-M Kline checksums. All 78 match.
@@ -37,7 +39,7 @@ The parameter choices are archived reconstruction settings. The archive does not
 - The largest six-input difference is `1.145e-12`. Scores, monthly thresholds, 87 raw triggers, 49 completed trades, and every reported performance metric are exactly invariant.
 - Four event rows contain a missing value in one of the six inputs (`0.00804%` of 49,773 events). None is in the assessment trigger set; complete-case deletion produces identical thresholds, trades, and performance.
 
-## Reproduction
+## Conditional downstream replay
 
 Run from a clean copy of this directory:
 
@@ -45,7 +47,7 @@ Run from a clean copy of this directory:
 ./run_full_scheme5.sh
 ```
 
-The runner relies on the external full-chain bundle for the large event-feature snapshot, retained candidate specifications, original miner, and Python environment. It does not regenerate the one-million-candidate search and stops if output directories already exist.
+The runner relies on an external full-chain bundle for the large event-feature snapshot, retained candidate specifications, original miner, and Python environment. The original 20,000-stage ledger and complete candidate payoff matrix are not available through this repository. Consequently, the runner does not regenerate the one-million-candidate search or independently explain the winner-selection path; it replays the retained downstream branch when the external inputs are supplied and stops if output directories already exist.
 
 ## Contents
 

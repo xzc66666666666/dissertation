@@ -1,0 +1,73 @@
+{
+  "scope": {
+    "ledger": "49 completed non-overlapping assessment trades with the archived 5 bp cost convention",
+    "method": "Direction is sign(score). Long-only and short-only retain the corresponding archived trades and remain flat otherwise.",
+    "timing_matched_benchmark": "At all 49 archived entry/exit intervals, take a long BTCUSDT position and deduct the same 5 bp cost. The underlying endpoint return is algebraically recovered from the archived costed directional return.",
+    "evidential_status": "Downstream retrospective attribution only; not an upstream search reconstruction, independent validation, or executable-fill test."
+  },
+  "baseline": {
+    "trades": 49,
+    "winning_trades": 31,
+    "net_hit_rate": 0.6326530612244898,
+    "net_hit_rate_wilson_95_ci": [
+      0.49267067560792427,
+      0.7533482703131686
+    ],
+    "mean_net_return": 0.004704069407114205,
+    "arithmetic_net_return_sum": 0.23049940094859606,
+    "compound_total_return": 0.22961116422623595,
+    "cagr": 0.23332322929893112,
+    "max_drawdown": -0.1141598352744092
+  },
+  "by_archived_direction": {
+    "long": {
+      "trades": 28,
+      "winning_trades": 20,
+      "net_hit_rate": 0.7142857142857143,
+      "net_hit_rate_wilson_95_ci": [
+        0.5294071156670428,
+        0.8474600394333092
+      ],
+      "mean_net_return": 0.0049833678264477365,
+      "arithmetic_net_return_sum": 0.1395342991405366,
+      "compound_total_return": 0.13058006177128,
+      "cagr": 0.13260541375482737,
+      "max_drawdown": -0.10869338673221951,
+      "share_of_baseline_arithmetic_net_return": 0.6053564502393406
+    },
+    "short": {
+      "trades": 21,
+      "winning_trades": 11,
+      "net_hit_rate": 0.5238095238095238,
+      "net_hit_rate_wilson_95_ci": [
+        0.3236953458284443,
+        0.7165599389846583
+      ],
+      "mean_net_return": 0.004331671514669498,
+      "arithmetic_net_return_sum": 0.09096510180805945,
+      "compound_total_return": 0.08759317964603475,
+      "cagr": 0.08892577619791142,
+      "max_drawdown": -0.07079025159740227,
+      "share_of_baseline_arithmetic_net_return": 0.3946435497606594
+    }
+  },
+  "timing_matched_all_long": {
+    "trades": 49,
+    "winning_trades": 30,
+    "net_hit_rate": 0.6122448979591837,
+    "net_hit_rate_wilson_95_ci": [
+      0.4724599944352045,
+      0.7357098828826433
+    ],
+    "mean_net_return": 0.0005626366802546356,
+    "arithmetic_net_return_sum": 0.027569197332477147,
+    "compound_total_return": 0.003670482217639881,
+    "cagr": 0.003724109632521788,
+    "max_drawdown": -0.16799069782967735
+  },
+  "interpretation": {
+    "raw_tail_asymmetry": "The separate 87-trigger audit is long-favouring before non-overlap selection and costs.",
+    "completed_ledger": "Both direction subsets contribute positively in the selected 49-trade ledger; long contributes more, but a pure same-timing long benchmark is near flat and has a deeper drawdown.",
+    "boundary": "This contrast is descriptive and post-selection. It does not establish stable bidirectional predictability or eliminate regime and selection explanations."
+  }
+}
