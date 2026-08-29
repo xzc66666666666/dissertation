@@ -1,6 +1,6 @@
 # GitHub Repository Guide
 
-This repository is the code-and-evidence companion for the dissertation's BTCUSDT FRPE-2D post-selection case study. It contains the frozen configuration, selection and assessment code, archived outputs, explicit feature contract, and two new provenance audits.
+This repository is the code-and-evidence companion for the dissertation's BTCUSDT FRPE-2D post-selection case study. It contains the archived reconstruction configuration, selection and assessment code, archived outputs, explicit feature contract, and provenance and attribution audits.
 
 Public repository: `https://github.com/xzc66666666666/dissertation` on branch `main`.
 
@@ -50,6 +50,6 @@ python code/audit_usdtm_source_identity.py \
 
 The data contract is Binance BTCUSDT USDT-M perpetual futures. Legacy artifact names containing `spot` are retained only for compatibility. Likewise, `holdout` remains in historical filenames, but the archive does not prove the design was fixed before outcomes were observed. The 2025-2026 period is therefore a historical assessment.
 
-Some frozen CSV/JSON artifacts preserve Chinese categorical values such as the original tier and factor-family labels. The corresponding code keeps those exact values so that catalogue identity and archived hashes remain reproducible; all explanatory documentation and user-facing runner messages are in English.
+Some archived CSV/JSON artifacts preserve Chinese categorical values such as the original tier and factor-family labels. The corresponding code keeps those exact values so that catalogue identity and archived hashes remain reproducible; all explanatory documentation and user-facing runner messages are in English.
 
 The experiment remains a research candidate. The fixed 5 bp cost is not a substitute for real fills, bid-ask spread, market impact, funding, liquidation risk, latency, capacity, paper trading, or production controls.

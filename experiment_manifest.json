@@ -18,9 +18,9 @@
     "repo": "local workspace",
     "commit": "isolated local reproducibility package dated 2026-08-22; per-script hashes recorded in outputs",
     "entrypoints": {
-      "prepare_data": "reuse frozen extended feature snapshot and 1,200 development-selected definitions",
+      "prepare_data": "reuse archived extended feature snapshot and 1,200 retained development-selected definitions",
       "train": "build_selection_7fold.py; finalize_selection_7fold.py; select_scheme5_final_factor.py",
-      "backtest": "evaluate_holdout_2fold.py (historical post-freeze assessment; legacy filename)",
+      "backtest": "evaluate_holdout_2fold.py (historical post-selection assessment; legacy filename)",
       "report": "build_scheme5_summary.py; validate_scheme5_outputs.py",
       "audit": "audit_frpe_snapshot_equivalence.py; audit_usdtm_source_identity.py"
     }

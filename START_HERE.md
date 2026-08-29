@@ -26,7 +26,7 @@ This review path supports a partial retrospective reconstruction of the retained
 
 | Purpose | Path |
 |---|---|
-| Seven-block frozen catalogue | `reproduced/frozen_library/frozen_factor_catalog.csv` |
+| Seven-block archived catalogue | `reproduced/frozen_library/frozen_factor_catalog.csv` |
 | Scheme 5 ranking | `reproduced/scheme5_final_factor/scheme5_candidate_ranking.csv` |
 | Final one-factor catalogue | `reproduced/scheme5_final_factor/final_factor_catalog.csv` |
 | Historical assessment metrics | `reproduced/holdout_2fold/holdout_2fold_performance.csv` |

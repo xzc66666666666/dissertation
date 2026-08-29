@@ -85,7 +85,7 @@ The V2 and V3 rebuild audits find zero feature-availability violations. The arch
 
 ## Selection and assessment
 
-The workflow starts from 1,200 retained exact definitions, evaluates seven consecutive 180-day selection blocks, freezes a 100-factor de-duplicated catalogue, and selects Scheme 5 rank 1. It then reports a two-block historical assessment from 2025-06-20 through 2026-06-15. Because prior external registration is not documented, this period must not be described as a genuine holdout or out-of-sample test.
+The workflow starts from 1,200 retained exact definitions, evaluates seven consecutive 180-day selection blocks, archives a 100-factor de-duplicated reconstruction catalogue, and selects Scheme 5 rank 1. It then reports a two-block historical assessment from 2025-06-20 through 2026-06-15. Because prior external registration is not documented, this period must not be described as a genuine holdout or out-of-sample test.
 
 ## Snapshot reconciliation
 
